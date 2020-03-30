@@ -3452,9 +3452,9 @@ int ffmfc_play(LPVOID lpParam)
     signal(SIGTERM, sigterm_handler); /* Termination (ANSI).  */
 
 
-    input_filename = "https://flv3.bn.netease.com/3e5e932b977ffc10152944aaccfe59b9c0041010af609ea421b3440f8776b8362da1b75cef1da4206792d99bf71cbc466f885fd6a7421f504da6bf886eab1c3b8d50c88c76cb0ad6ee6ca8abf151501aac67b5b3474709823a3ac9db40cedf1a4bf5daf9267574e89d6400ee05aaac6b06485afe15522ce8.mp4";
+    //input_filename = "https://flv3.bn.netease.com/3e5e932b977ffc10152944aaccfe59b9c0041010af609ea421b3440f8776b8362da1b75cef1da4206792d99bf71cbc466f885fd6a7421f504da6bf886eab1c3b8d50c88c76cb0ad6ee6ca8abf151501aac67b5b3474709823a3ac9db40cedf1a4bf5daf9267574e89d6400ee05aaac6b06485afe15522ce8.mp4";
     //input_filename = "ws2.mp4";
-    //input_filename = (LPSTR)(LPCTSTR)dlg->m_sourceFile;
+    input_filename = (LPSTR)(LPCTSTR)dlg->m_sourceFile;
     if (display_disable) {
         video_disable = 1;
     }
@@ -3626,11 +3626,11 @@ void CffplayMFCDlg::OnBnClickedBtnStart()
     // TODO: 在此添加控件通知处理程序代码
 
     CString szFilter = _T("All Files (*.*)|*.*|avi Files (*.avi)|*.avi|rmvb Files (*.rmvb)|*.rmvb|3gp Files (*.3gp)|*.3gp|mp3 Files (*.mp3)|*.mp3|mp4 Files (*.mp4)|*.mp4|mpeg Files (*.ts)|*.ts|flv Files (*.flv)|*.flv|mov Files (*.mov)|*.mov||");
-    //CFileDialog dlg(TRUE, NULL, NULL, OFN_PATHMUSTEXIST | OFN_HIDEREADONLY, szFilter, NULL);
-    //if (IDOK == dlg.DoModal())
-    //{
-    //    m_sourceFile = dlg.GetPathName();
-    //}
+    CFileDialog dlg(TRUE, NULL, NULL, OFN_PATHMUSTEXIST | OFN_HIDEREADONLY, szFilter, NULL);
+    if (IDOK == dlg.DoModal())
+    {
+        m_sourceFile = dlg.GetPathName();
+    }
 
     pThreadPlay = AfxBeginThread(Thread_Play, this);//开启线程
 }
